@@ -1,43 +1,39 @@
 ﻿using UnityEngine;
 
-public class NPC_Adam : NPC_all
-{
-    public static bool player_met_Adam;
-    public static bool Bay_is_dead;
-    
+public class NPC_Adam : NPC_all {
+
     string[,] adamLines = new string[,]
         { { "Hi I am Adam, do me a favor, help me collect all the 13 cubes", "yes that's right, all 13 cubes"},
-           {"So you have met Bay, don't listen to him, he's an idiot, help me collect all the cubes instead","" },
-           {"Good job, now you have to collect ","" },
+           {"So you have met Bay, don't listen to him, he's an idiot, help me collect all the cubes instead",""},
+           {"Good job, now you have to collect {0} more cubes.","" },
            {"Well done! Hehehehe Bay will be gone soon!!!","" },
            {"Hahahaha Bay is finally gone!!!","" }};
 
-    private int lineNo=0;
+    private int lineNo = 0;
 
     // Update is called once per frame
-    void start()
-    {
-        player_met_Adam = false;
-    }
-
-    void Update()
-    {
-    }
 
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && Input.GetKeyDown("x") ) {
 
-            if (lineNo != adamLines.GetLength(1) && adamLines[eventScript.mainEventNo, lineNo].Length != 0) {
-                Debug.Log("pop dialog lineNo: " + lineNo.ToString());            
-                if (Player.talking == false) {
+            int eventNo = eventScript.getInstance().mainEventNo;
+
+            if (lineNo < adamLines.GetLength(1) && adamLines[eventNo, lineNo].Length != 0) {
+
+                eventScript.getInstance().player_met_Adam = true;
+
+                if (Player.talking == false)
+                {
                     Player.talking = true;
                 }
-                dialogue_text = adamLines[eventScript.mainEventNo, lineNo];
+
+                dialogue_text = System.String.Format(adamLines[eventNo, lineNo], 13-GameObject.Find("Player").GetComponent<Player>().CubesCollected);
+
                 lineNo++;
                 
             } else {
-                Debug.Log("lineNo: " + lineNo.ToString());
+                
                 lineNo = 0;
                 Player.talking = false;
                 end();
