@@ -1,0 +1,9 @@
+version: 1.4.4
+© 2013 by Leslie Young
+http://www.plyoung.com/
+
+===============================================================
+
+Documentation: http://www.plyoung.com/unirpg/
+Update notes: http://forum.plyoung.com/c/announce/
+
