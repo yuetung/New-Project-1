@@ -4,7 +4,6 @@ using System.Collections;
 public class NPC_Bay : NPC_all
 {
     private bool allowedToTrigger;
-    public bool player_met_Bay;
 
     string[,] BayLines = new string[,]
         { { "Hi I am Bay, please don't collect any of the cubes","Really, there's nothing you'll get from collecting all the cubes"},
@@ -13,30 +12,25 @@ public class NPC_Bay : NPC_all
            {"Well done! Hehehehe Bay will be gone soon!!!","" },
            {"Hahahaha Bay is finally gone!!!","" }};
     private int lineNo = 0;
-
-    void Start()
-    {
-        player_met_Bay = false;
-        NPC_Adam.Bay_is_dead = false;
-    }
+    
     IEnumerator destroyBay()
     {
         yield return new WaitForSeconds(3);
         transform.Translate(0, -10, 0);
-        NPC_Adam.Bay_is_dead = true;
+        eventScript.getInstance().Bay_is_dead = true;
         Destroy(gameObject, 3.0f);
     }
     void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player") && Input.GetKeyDown("x"))
         {
-            if (lineNo != BayLines.GetLength(1) && !BayLines[eventScript.mainEventNo, lineNo].Equals("", System.StringComparison.Ordinal))
+            if (lineNo != BayLines.GetLength(1) && !BayLines[eventScript.getInstance().mainEventNo, lineNo].Equals("", System.StringComparison.Ordinal))
             {
                 if (Player.talking == false)
                 {
                     Player.talking = true;
                 }
-                dialogue_text = BayLines[eventScript.mainEventNo, lineNo];
+                dialogue_text = BayLines[eventScript.getInstance().mainEventNo, lineNo];
                 lineNo++;
             }
             else

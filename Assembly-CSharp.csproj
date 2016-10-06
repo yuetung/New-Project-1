@@ -1,67 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>10.0.20506</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
-    <ProjectGuid>{B2B58FB2-4462-6B0C-A872-40DD957E5FE0}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <BaseDirectory>Assets</BaseDirectory>
+	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+	<ProductVersion>10.0.20506</ProductVersion>
+	<SchemaVersion>2.0</SchemaVersion>
+	<RootNamespace></RootNamespace>
+	<ProjectGuid>{C027DA03-4F78-798C-89CC-0DCB0FE4D831}</ProjectGuid>
+	<OutputType>Library</OutputType>
+	<AppDesignerFolder>Properties</AppDesignerFolder>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+	<FileAlignment>512</FileAlignment>
+	<BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_4_1;UNITY_5_4;UNITY_5;UNITY_ANALYTICS;ENABLE_NEW_BUGREPORTER;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_EDITOR_RETINA;ENABLE_RETINA_GUISTYLES;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_SPRITE_POLYGON;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;ENABLE_EDITOR_TESTS_RUNNER;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugSymbols>true</DebugSymbols>
+	<DebugType>full</DebugType>
+	<Optimize>false</Optimize>
+	<OutputPath>Temp\bin\Debug\</OutputPath>
+	<DefineConstants>DEBUG;TRACE;UNITY_5_2_0;UNITY_5_2;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_METRICS;ENABLE_REFLECTION_BUFFERS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;ENABLE_ANDROID_ATLAS_ETC1_COMPRESSION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_LOG_MIXED_STACKTRACE;ENABLE_UNITYWEBREQUEST;ENABLE_EVENT_QUEUE;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;UNITY_TEAM_LICENSE</DefineConstants>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Temp\bin\Release\</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <NoWarn>0169</NoWarn>
+	<DebugType>pdbonly</DebugType>
+	<Optimize>true</Optimize>
+	<OutputPath>Temp\bin\Release\</OutputPath>
+	<ErrorReport>prompt</ErrorReport>
+	<WarningLevel>4</WarningLevel>
+	<NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+	<Reference Include="System" />
     <Reference Include="System.XML" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="UnityEngine">
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-    </Reference>
+	<Reference Include="System.Core" />
+	<Reference Include="System.Xml.Linq" />
+	<Reference Include="UnityEngine">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	</Reference>
+	<Reference Include="UnityEditor">
+	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DiaQ\Script\DiaQAsset.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQConversation.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQDecision.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQEditorDependencies.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQEngine.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQGraph.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQNode.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQVar.cs" />
-     <Compile Include="Assets\DiaQ\Script\DiaQuest.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQCondAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQDecisionAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQRewardAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQUniRPG.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQVarAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQuestAction.cs" />
-     <Compile Include="Assets\DiaQ\UniRPG\Script\DiaQuestListProvider.cs" />
      <Compile Include="Assets\Script\Collectible.cs" />
      <Compile Include="Assets\Script\Dialogue_Box.cs" />
      <Compile Include="Assets\Script\NPC_Adam.cs" />
@@ -71,123 +54,28 @@
      <Compile Include="Assets\Script\Setting.cs" />
      <Compile Include="Assets\Script\dialogue.cs" />
      <Compile Include="Assets\Script\eventScript.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Cameras\Scripts\DefaultCam1.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Cameras\Scripts\DefaultCam1InputBinder.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Cameras\Scripts\DefaultCam2.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Actions\Chara2_Ani_act.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Actions\Chara2_Move_act.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Actions\Chara2_Type_act.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Animation Controllers\Chara2_AnimCtrl.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Animation Controllers\Chara2_AnimCtrlBase.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Animation Controllers\Chara2_MecanimCtrl.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Controllers\Chara2_Base.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Controllers\Chara2_NPC.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Controllers\Chara2_Player.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Controllers\Chara2_Player_Input.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Navigators\Chara2_NaviBase.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Navigators\Chara2_NaviSimple.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\Character2\Scripts\Navigators\Chara2_ProNavi.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\GUI\Scripts\DefaultGUIInputBinder.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\GUI\Scripts\DefaultGameGUI.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\GUI\Scripts\DefaultGameGUIData.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\GUI\Scripts\DefaultMainMenuGUI.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\GUI\Scripts\DefaultMainMenuGUIData.cs" />
-     <Compile Include="Assets\UniRPG\Default Assets\LoadSave\Scripts\DefaultLoadSave.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Common\Curves.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Common\Easing.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Common\EditorDependencies.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Common\Extensions.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Common\MyGlobal.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\Database.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\GlobalDefs.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\LoadGUISettings.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGActorClass.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGAttribute.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGAttributeData.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGEvent.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGLoot.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGSkill.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\RPGState.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Database\StartupSettings.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\Action.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\AnimationAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\AttributeAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\BagAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CameraSelectAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CharacterEnDisableAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CollidableAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CreateLootAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CurrencyAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\CustomVarAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\DebugLogAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\DelayAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\DestroyAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\EquipAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\ExecuteRandom.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\GUIAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\GlobalVarAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\IfThenAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\LoadSceneAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\MecanimParamAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\MoveObjectAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\ObjectEnabledAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\SendMessageAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\SkillChangeAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\SkillEquipAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\SoundAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\SpawnAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\StateChangeAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\StopExeAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actions\TargetingFlagAction.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actor\Actor.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Actor\CharacterBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\CollidableObject.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\GUI\NoQuest.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\GUI\QuestListProviderAttribute.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\GUI\QuestListProviderBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\GUI\UniRPGGUI.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Input\InputBinderAttribute.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Input\InputBinderBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Input\InputManager.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Interactable.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Misc\AutoDestroyAudio.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Misc\SimpleAutoHide.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Misc\SimpleFollow.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Misc\SimpleMove.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\PatrolPath.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\PlaceableObject.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\RPGItem.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\RPGLootDrop.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\RPGObject.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\SpawnPoint.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\Trigger.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\Game\UniRPGGameController.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\AutoCallBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\GameCameraBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\LoadSaveProviderBase.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\LoadingGUI.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\MainMenuData.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\PreviewObject.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\Startup.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\UniRPGGlobal.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\UniRPGSettings.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\UniRPGUtil.cs" />
-     <Compile Include="Assets\UniRPG\Scripts\UniRPG\UniqueMonoBehaviour.cs" />
-     <None Include="Assets\UniRPG\version-unirpg.txt" />
-     <None Include="Assets\DiaQ\version-diaq.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="Mono.Cecil">
+ <HintPath>C:/Program Files/Unity/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	   Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
