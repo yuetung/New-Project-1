@@ -77,25 +77,3 @@ public class combatEffectDamage : combatEffect
     }
 
 }
-
-public class combatEffectAddBuff : combatEffect
-{
-    private combatBuff buff;
-
-    combatEffectAddBuff(combatBuff b)
-    {
-        this.buff = b;
-    }
-
-    override
-    public void execute(Unit self, Unit other)
-    {
-        self.triggerEvent(combatEvent.BEFORE_BUFF);
-        other.triggerEvent(combatEvent.BEFORE_BUFFED);
-
-        other.applyBuff(this.buff);
-
-        self.triggerEvent(combatEvent.AFTER_BUFF);
-        other.triggerEvent(combatEvent.AFTER_BUFFED);
-    }
-}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
-
+    
     [SerializeField]
     private combatType primary_type;
     [SerializeField]
@@ -17,24 +17,8 @@ public class Unit : MonoBehaviour {
     private float special_defense;
 
     public float speed;
-    public float delay;
     
     private IList<combatMove> moves;
-    public Dictionary<combatMove, moveStatus> moveList
-    {
-        get
-        {
-            Dictionary<combatMove, moveStatus> d = new Dictionary<combatMove, moveStatus>();
-
-            foreach (combatMove m in this.moves)
-            {
-                d.Add(m, moveStatus.ENABLED);
-            }
-
-            return d;
-        }
-    }
-
     private IList<combatAbility> abilities;
     private IList<combatBuff> buffs;
 
@@ -66,11 +50,6 @@ public class Unit : MonoBehaviour {
         }
     }
 
-    public void applyBuff(combatBuff b)
-    {
-        this.buffs.Add(b);
-    }
-
     public void die()
     {
         this.triggerEvent(combatEvent.ON_DEATH);
@@ -81,18 +60,6 @@ public class Unit : MonoBehaviour {
     {
         // triggers combat events
         // API for combatEffects to call
-    }
-
-    public void startTurn()
-    {
-        this.triggerEvent(combatEvent.TURN_START);
-    }
-
-    public void endTurn()
-    {
-        this.triggerEvent(combatEvent.TURN_END);
-
-        this.getCombatManager().assignActiveUnit();
     }
 
     /*
@@ -107,9 +74,5 @@ public class Unit : MonoBehaviour {
 	}
     */
 
-    public combatManager getCombatManager()
-    {
-        return this.GetComponentInParent<combatManager>();
-    }
 
 }

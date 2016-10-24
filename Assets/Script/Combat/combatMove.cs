@@ -9,25 +9,18 @@
 public class combatMove {
 
     private IList<combatEffect> moveEffects;
-    public int delay;
 
-    combatMove(IList<combatEffect> moveEffects, int delay)
+    combatMove(IList<combatEffect> moveEffects)
     {
         this.moveEffects = moveEffects;
-        this.delay = delay;
     }
 
     public void execute(Unit self, Unit other)
     {
-        self.triggerEvent(combatEvent.BEFORE_MOVE);
-
-        self.delay += this.delay;
         foreach (combatEffect e in this.moveEffects)
         {
             e.execute(self, other);
         }
-
-        self.triggerEvent(combatEvent.AFTER_MOVE);
     }
 
 }
