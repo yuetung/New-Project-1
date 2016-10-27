@@ -18,6 +18,11 @@ public enum combatEvent
     COMBAT_START,
     COMBAT_END,
 
+    TURN_START,
+    TURN_END,
+
+    SPEED_TICK, // triggers when delay is reduced by speed
+
     ON_DEATH,
 
     BEFORE_DAMAGE,
