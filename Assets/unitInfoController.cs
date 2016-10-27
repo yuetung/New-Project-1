@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class unitInfoController : MonoBehaviour {
+public class unitInfoController : combatUiController {
 
     [SerializeField]
     private Text nameText;
@@ -15,7 +15,7 @@ public class unitInfoController : MonoBehaviour {
     private Text maxStaminaText;
 
     private Unit _current;
-    public Unit current
+    override public Unit current
     {
         get { return this._current; }
         set

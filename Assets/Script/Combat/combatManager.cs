@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class combatManager : MonoBehaviour {
 
-    [SerializeField]
-    private unitInfoController ui_controller;
+    public UnityEvent onActiveUnit;
 
     private Unit _activeUnit;
     public Unit activeUnit
@@ -13,8 +13,8 @@ public class combatManager : MonoBehaviour {
         set
         {
             this._activeUnit = value;
-
-            ui_controller.current = value;
+            
+            this.onActiveUnit.Invoke();
         }
     }
 
@@ -33,6 +33,8 @@ public class combatManager : MonoBehaviour {
         foreach (Unit child in this.getAllUnits())
         {
             child.triggerEvent(combatEvent.COMBAT_START);
+            child.health = child.maxHealth;
+            child.stamina = child.maxStamina;
         }
 
         this.startNextUnitTurn();

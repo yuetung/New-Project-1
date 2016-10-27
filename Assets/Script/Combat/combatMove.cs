@@ -8,18 +8,37 @@
 
 public class combatMove {
 
-    private IList<combatEffect> moveEffects;
+    private combatEffect[] moveEffects;
+    public string name
+    {
+        get
+        {
+            foreach (string key in combatMove.lib.Keys)
+            {
+                if (combatMove.lib[key] == this)
+                {
+                    return key;
+                }
+            }
 
-    combatMove(IList<combatEffect> moveEffects)
+            return "Unknown Move";
+        }
+    }
+
+    public static readonly Dictionary<string, combatMove> lib = new Dictionary<string, combatMove> {
+        { "Ember", new combatMove(new combatEffect[] { combatEffect.lib["10dmgfirestanding"] } ) }
+    };
+
+    private combatMove(combatEffect[] moveEffects)
     {
         this.moveEffects = moveEffects;
     }
 
     public void execute(Unit self, Unit other)
     {
-        foreach (combatEffect e in this.moveEffects)
+        for (int i = 0; i < this.moveEffects.Length; i++)
         {
-            e.execute(self, other);
+            moveEffects[i].execute(self, other);
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 /*
 
@@ -19,6 +20,11 @@ public abstract class combatEffect {
     // applies the relevant effect
     public abstract void execute(Unit self, Unit other);
 
+    public static readonly Dictionary<string, combatEffect> lib = new Dictionary<string, combatEffect>
+    {
+        { "10dmgfirestanding", new combatEffectDamage(10, combatType.FIRE, combatStance.STANDING) }
+    };
+
 }
 
 public class combatEffectDamage : combatEffect
@@ -30,19 +36,19 @@ public class combatEffectDamage : combatEffect
     private float? amount;
     private Func<Unit, Unit, float> var_amount;
 
-    combatEffectDamage(float amount, combatType type, combatStance stancetype) 
+    public combatEffectDamage(float amount, combatType type, combatStance stancetype) 
         : this(type, stancetype)
     {
         this.amount = amount;
     }
 
-    combatEffectDamage(Func<Unit, Unit, float> expr, combatType type, combatStance stancetype) 
+    public combatEffectDamage(Func<Unit, Unit, float> expr, combatType type, combatStance stancetype) 
         : this(type, stancetype)
     {
         this.var_amount = expr;
     }
 
-    combatEffectDamage(combatType type, combatStance stancetype)
+    public combatEffectDamage(combatType type, combatStance stancetype)
     {
         this.dmgtype = type;
         this.stancetype = stancetype;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
-    
+
     [SerializeField]
     private combatType primary_type;
     [SerializeField]
@@ -18,8 +18,8 @@ public class Unit : MonoBehaviour {
 
     public int speed;
     public int delay;
-    
-    public IList<combatMove> moves;
+
+    public IList<combatMove> moves = new List<combatMove>(new combatMove[] { combatMove.lib["Ember"] });
     public IList<combatAbility> abilities;
     public IList<combatBuff> buffs;
 
