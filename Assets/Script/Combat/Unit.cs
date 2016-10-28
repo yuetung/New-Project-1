@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using UnityEditor;
+using System;
 using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
 
     [SerializeField]
-    private combatType primary_type;
+    private combatType primaryType;
     [SerializeField]
-    private combatType secondary_type;
+    private combatType secondaryType;
 
     private combatStance stance;
 
@@ -17,9 +19,10 @@ public class Unit : MonoBehaviour {
     public int specialDefense;
 
     public int speed;
+    [NonSerialized]
     public int delay;
 
-    public IList<combatMove> moves = new List<combatMove>(new combatMove[] { combatMove.lib["Ember"] });
+    public combatMove[] moves;
     public IList<combatAbility> abilities;
     public IList<combatBuff> buffs;
 
@@ -75,7 +78,7 @@ public class Unit : MonoBehaviour {
     public void tick()
     {
         this.triggerEvent(combatEvent.SPEED_TICK);
-        this.delay -= this.delay;
+        this.delay -= this.speed;
     }
 
     public void startTurn()
@@ -87,5 +90,78 @@ public class Unit : MonoBehaviour {
     {
         this.triggerEvent(combatEvent.TURN_END);
         battle.startNextUnitTurn();
+    }
+}
+
+[CustomEditor(typeof(Unit))]
+public class UnitEditior : Editor
+{
+    private int index = 0;
+    private Unit inspected;
+
+    void onEnable()
+    {
+        if (this.inspected == null)
+        {
+            this.inspected = target as Unit;
+        }
+    }
+
+    public override void OnInspectorGUI()
+    {
+        List<combatMove> moveList = AssetDatabase.LoadAssetAtPath<CombatMoveList>("Assets/Script/Combat/Moves.asset").moveList;
+        string[] moveNameList = moveList.ConvertAll<string>(delegate (combatMove m) { return m.moveName; }).ToArray();
+
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("primaryType"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("secondaryType"));
+
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("maxHealth"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("maxStamina"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("physicalAttack"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("physicalDefense"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("specialAttack"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("specialDefense"));
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
+        
+        EditorGUILayout.PropertyField(serializedObject.FindProperty("moves"));
+        if (serializedObject.FindProperty("moves").isExpanded)
+        {
+            EditorGUI.indentLevel += 1;
+
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("moves").FindPropertyRelative("Array.size"));
+            
+            combatMove move;
+            int selected;
+            int index;
+            for (int j = 0; j < serializedObject.FindProperty("moves").arraySize; j++)
+            {
+                move = serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue as combatMove;
+
+                index = 0;
+                foreach (combatMove moveCheck in moveList) {
+                    if (moveCheck == move)
+                    {
+                        break;
+                    }
+                    index++;
+                }
+
+                index = index % moveList.Count;
+
+                EditorGUI.BeginChangeCheck();
+                selected = EditorGUILayout.Popup("Move " + j, index, moveNameList);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue = moveList[selected];
+                    Debug.Log((serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue as combatMove).moveName);
+                }
+            }
+
+            EditorGUI.indentLevel -= 1;
+        }
+
+        serializedObject.ApplyModifiedProperties();
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using UnityEngine;
 
 /*
 
@@ -6,32 +7,20 @@
 
 */
 
-public class combatMove {
+[Serializable]
+public class combatMove : ScriptableObject {
 
     private combatEffect[] moveEffects;
-    public string name
+    public string moveName;
+
+    public static combatMove init(string moveName, combatEffect[] moveEffects)
     {
-        get
-        {
-            foreach (string key in combatMove.lib.Keys)
-            {
-                if (combatMove.lib[key] == this)
-                {
-                    return key;
-                }
-            }
+        combatMove m = ScriptableObject.CreateInstance <combatMove>() as combatMove;
 
-            return "Unknown Move";
-        }
-    }
+        m.moveEffects = moveEffects;
+        m.moveName = moveName;
 
-    public static readonly Dictionary<string, combatMove> lib = new Dictionary<string, combatMove> {
-        { "Ember", new combatMove(new combatEffect[] { combatEffect.lib["10dmgfirestanding"] } ) }
-    };
-
-    private combatMove(combatEffect[] moveEffects)
-    {
-        this.moveEffects = moveEffects;
+        return m;
     }
 
     public void execute(Unit self, Unit other)

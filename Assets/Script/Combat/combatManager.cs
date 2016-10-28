@@ -4,6 +4,7 @@ using System;
 
 public class combatManager : MonoBehaviour {
 
+    [HideInInspector]
     public UnityEvent onActiveUnit;
 
     private Unit _activeUnit;
@@ -78,7 +79,7 @@ public class combatManager : MonoBehaviour {
 
                 first = this.getTurnOrder()[0];
             }
-            
+
             this.activeUnit = first;
             activeUnit.startTurn();
 
@@ -92,7 +93,7 @@ public class combatManager : MonoBehaviour {
         Unit[] rt = this.getAllUnits();
 
         // in-place sort
-        Array.Sort(rt, delegate (Unit u1, Unit u2) { return (int)(u1.speed - u2.speed); });
+        Array.Sort(rt, delegate (Unit u1, Unit u2) { return (int)(u1.delay - u2.delay); });
 
         return rt;
     }

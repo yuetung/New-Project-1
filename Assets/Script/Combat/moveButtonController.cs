@@ -14,7 +14,7 @@ public class moveButtonController : MonoBehaviour {
         {
             this._move = value;
 
-            moveName.text = move.name;
+            moveName.text = value.moveName;
         }
     }
 }
