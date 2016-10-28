@@ -2,10 +2,12 @@
 using UnityEngine.Events;
 using System;
 
-public class combatManager : MonoBehaviour {
+public class CombatManager : MonoBehaviour {
 
     [HideInInspector]
     public UnityEvent onActiveUnit;
+
+    public PlayerInputManager playerInput;
 
     private Unit _activeUnit;
     public Unit activeUnit

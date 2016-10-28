@@ -4,15 +4,13 @@ using System;
 using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
+    
+    public combatType primaryType;
+    public combatType secondaryType;
 
-    [SerializeField]
-    private combatType primaryType;
-    [SerializeField]
-    private combatType secondaryType;
-
-    private combatStance stance;
-
-    // implementation undecided
+    [NonSerialized]
+    public combatStance stance;
+    
     public int physicalAttack;
     public int physicalDefense;
     public int specialAttack;
@@ -21,10 +19,10 @@ public class Unit : MonoBehaviour {
     public int speed;
     [NonSerialized]
     public int delay;
-
-    public combatMove[] moves;
-    public IList<combatAbility> abilities;
-    public IList<combatBuff> buffs;
+    
+    public CombatMove[] moves;
+    public combatAbility[] abilities;
+    public combatBuff[] buffs;
 
     [SerializeField]
     public float maxHealth;
@@ -56,9 +54,19 @@ public class Unit : MonoBehaviour {
 
     // Helper Method
 
-    public combatManager battle
+    public CombatManager battle
     {
-        get { return this.GetComponentInParent<combatManager>(); }
+        get { return this.GetComponentInParent<CombatManager>(); }
+    }
+
+    public bool isAlly(Unit u)
+    {
+        return false; // NO ONE IS MAH ALLY
+    }
+
+    public bool isPlayer()
+    {
+        return true; // All your unitZ are belong to US
     }
 
     // Functionality
@@ -67,6 +75,7 @@ public class Unit : MonoBehaviour {
     {
         this.triggerEvent(combatEvent.ON_DEATH);
         // kills this unit, to be implemented
+        Debug.Log("Oh noes, you can't actually die!?");
     }
 
     public void triggerEvent(combatEvent e)
@@ -91,6 +100,7 @@ public class Unit : MonoBehaviour {
         this.triggerEvent(combatEvent.TURN_END);
         battle.startNextUnitTurn();
     }
+    
 }
 
 [CustomEditor(typeof(Unit))]
@@ -109,19 +119,30 @@ public class UnitEditior : Editor
 
     public override void OnInspectorGUI()
     {
-        List<combatMove> moveList = AssetDatabase.LoadAssetAtPath<CombatMoveList>("Assets/Script/Combat/Moves.asset").moveList;
-        string[] moveNameList = moveList.ConvertAll<string>(delegate (combatMove m) { return m.moveName; }).ToArray();
+        CombatMove[] moveList = Array.ConvertAll<UnityEngine.Object, CombatMove>(AssetDatabase.LoadAllAssetsAtPath("Assets/Database/CombatMove.asset"), (UnityEngine.Object o) => { return o as CombatMove; });
+        string[] moveNameList = Array.ConvertAll<CombatMove, string>(moveList, (CombatMove m) => { return m.name; });
 
         serializedObject.Update();
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("primaryType"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("secondaryType"));
+        EditorGUILayout.EndHorizontal();
 
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("maxHealth"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("maxStamina"));
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("physicalAttack"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("physicalDefense"));
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PropertyField(serializedObject.FindProperty("specialAttack"));
         EditorGUILayout.PropertyField(serializedObject.FindProperty("specialDefense"));
+        EditorGUILayout.EndHorizontal();
+
         EditorGUILayout.PropertyField(serializedObject.FindProperty("speed"));
         
         EditorGUILayout.PropertyField(serializedObject.FindProperty("moves"));
@@ -131,15 +152,17 @@ public class UnitEditior : Editor
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("moves").FindPropertyRelative("Array.size"));
             
-            combatMove move;
+            CombatMove move;
+            SerializedProperty elem;
             int selected;
             int index;
             for (int j = 0; j < serializedObject.FindProperty("moves").arraySize; j++)
             {
-                move = serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue as combatMove;
+                elem = serializedObject.FindProperty("moves").GetArrayElementAtIndex(j);
+                move = elem.objectReferenceValue as CombatMove;
 
                 index = 0;
-                foreach (combatMove moveCheck in moveList) {
+                foreach (CombatMove moveCheck in moveList) {
                     if (moveCheck == move)
                     {
                         break;
@@ -147,14 +170,20 @@ public class UnitEditior : Editor
                     index++;
                 }
 
-                index = index % moveList.Count;
+                if (index == moveList.Length)
+                {
+                    index = 0;
+                }
 
                 EditorGUI.BeginChangeCheck();
                 selected = EditorGUILayout.Popup("Move " + j, index, moveNameList);
                 if (EditorGUI.EndChangeCheck())
                 {
-                    serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue = moveList[selected];
-                    Debug.Log((serializedObject.FindProperty("moves").GetArrayElementAtIndex(j).objectReferenceValue as combatMove).moveName);
+                    //Undo.RecordObject(move, "Changed move to " + moveList[selected].moveName);
+
+                    elem.objectReferenceValue = moveList[selected];
+
+                    //EditorUtility.SetDirty(elem.objectReferenceValue);
                 }
             }
 
@@ -162,6 +191,5 @@ public class UnitEditior : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
-        
     }
 }

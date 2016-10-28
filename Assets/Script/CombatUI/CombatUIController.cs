@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using System;
 
-public abstract class combatUiController : MonoBehaviour {
+public abstract class CombatUIController : MonoBehaviour {
 
     [SerializeField]
-    private combatManager battle;
+    protected CombatManager battle;
     
     public abstract Unit current { get; set; }
 

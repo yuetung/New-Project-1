@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class unitInfoController : combatUiController {
+public class unitInfoController : CombatUIController {
 
     [SerializeField]
     private Text nameText;

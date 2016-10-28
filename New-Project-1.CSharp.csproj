@@ -70,19 +70,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Collectible.cs" />
+    <Compile Include="Assets\Script\Combat\CombatAbility.cs" />
+    <Compile Include="Assets\Script\Combat\CombatBuff.cs" />
+    <Compile Include="Assets\Script\Combat\CombatEffect.cs" />
+    <Compile Include="Assets\Script\Combat\CombatEnums.cs" />
+    <Compile Include="Assets\Script\Combat\CombatGrid.cs" />
+    <Compile Include="Assets\Script\Combat\CombatManager.cs" />
+    <Compile Include="Assets\Script\Combat\CombatMove.cs" />
     <Compile Include="Assets\Script\Combat\CombatMoveList.cs" />
     <Compile Include="Assets\Script\Combat\Unit.cs" />
-    <Compile Include="Assets\Script\Combat\combatAbility.cs" />
-    <Compile Include="Assets\Script\Combat\combatBuff.cs" />
-    <Compile Include="Assets\Script\Combat\combatEffect.cs" />
-    <Compile Include="Assets\Script\Combat\combatEnums.cs" />
-    <Compile Include="Assets\Script\Combat\combatGrid.cs" />
-    <Compile Include="Assets\Script\Combat\combatManager.cs" />
-    <Compile Include="Assets\Script\Combat\combatMove.cs" />
-    <Compile Include="Assets\Script\Combat\combatUiController.cs" />
-    <Compile Include="Assets\Script\Combat\moveButtonController.cs" />
-    <Compile Include="Assets\Script\Combat\moveListController.cs" />
-    <Compile Include="Assets\Script\Combat\unitInfoController.cs" />
+    <Compile Include="Assets\Script\CombatUI\CombatUIController.cs" />
+    <Compile Include="Assets\Script\CombatUI\MoveButtonController.cs" />
+    <Compile Include="Assets\Script\CombatUI\MoveListController.cs" />
+    <Compile Include="Assets\Script\CombatUI\PlayerInputManager.cs" />
+    <Compile Include="Assets\Script\CombatUI\UnitTargetButtonController.cs" />
+    <Compile Include="Assets\Script\CombatUI\UnitTargetListController.cs" />
     <Compile Include="Assets\Script\Dialogue_Box.cs" />
     <Compile Include="Assets\Script\NPC_Adam.cs" />
     <Compile Include="Assets\Script\NPC_Bay.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Assets\Script\Setting.cs" />
     <Compile Include="Assets\Script\dialogue.cs" />
     <Compile Include="Assets\Script\eventScript.cs" />
+    <Compile Include="Assets\Script\unitInfoController.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

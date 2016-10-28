@@ -2,9 +2,9 @@
 
 public class combatBuff {
 
-    private Dictionary<combatEvent, combatEffect> effects;
+    private Dictionary<combatEvent, CombatEffect> effects;
 
-    combatBuff(Dictionary<combatEvent, combatEffect> effects)
+    combatBuff(Dictionary<combatEvent, CombatEffect> effects)
     {
         this.effects = effects;
     }

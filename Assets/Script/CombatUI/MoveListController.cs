@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class moveListController : combatUiController {
+public class MoveListController : CombatUIController {
 
     [SerializeField]
     private GameObject moveButtonPrefab;
@@ -23,22 +23,26 @@ public class moveListController : combatUiController {
             }
 
             GameObject button;
-
-            foreach (combatMove m in value.moves)
+            
+            foreach (CombatMove m in value.moves)
             {
                 button = (GameObject)Instantiate(moveButtonPrefab);
                 button.transform.SetParent(this.transform);
-                button.GetComponent<moveButtonController>().move = m;
+                button.GetComponent<MoveButtonController>().move = m;
 
                 this.childButtons.Add(button);
             }
         }
     }
-
-
+    
     // API to bind to button callback
     public void activeUnitEndTurn()
     {
         this.current.endTurn();
+    }
+
+    public void selectMove(CombatMove m)
+    {
+        this.battle.playerInput.move = m;
     }
 }

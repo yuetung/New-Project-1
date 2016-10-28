@@ -15,19 +15,19 @@ using System.Collections.Generic;
 
 */
 
-public abstract class combatEffect {
+public abstract class CombatEffect {
     
     // applies the relevant effect
     public abstract void execute(Unit self, Unit other);
 
-    public static readonly Dictionary<string, combatEffect> lib = new Dictionary<string, combatEffect>
+    public static readonly Dictionary<string, CombatEffect> lib = new Dictionary<string, CombatEffect>
     {
-        { "10dmgfirestanding", new combatEffectDamage(10, combatType.FIRE, combatStance.STANDING) }
+        { "10dmgfirestanding", new combatEffectDamage(1000, combatType.FIRE, combatStance.STANDING) }
     };
 
 }
 
-public class combatEffectDamage : combatEffect
+public class combatEffectDamage : CombatEffect
 {
 
     private combatType dmgtype;
@@ -68,13 +68,13 @@ public class combatEffectDamage : combatEffect
             damage_dealt = (float) this.amount;
         }
 
+        // modify by physical attack and defense
+        damage_dealt += self.physicalAttack;
+        damage_dealt -= other.physicalDefense;
+
         // check for type
 
         // check for stance
-
-        // modify by atk stat
-
-        // modify by defense stat
 
         other.health -= damage_dealt;
 

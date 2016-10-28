@@ -35,10 +35,13 @@ public class CombatMoveEditor : EditorWindow
         GUILayout.BeginHorizontal();
         GUILayout.Label("Moves!");
         GUILayout.EndHorizontal();
-
-        foreach (combatMove m in this.combatMoveList.moveList)
+        
+        foreach (CombatMove m in this.combatMoveList.moveList)
         {
-            m.moveName = EditorGUILayout.TextField("Move Name: ", m.moveName);
+            if (m != null)
+            {
+                m.name = EditorGUILayout.TextField("Move Name: ", m.name);
+            }
         }
 
         GUILayout.BeginHorizontal();
@@ -46,16 +49,21 @@ public class CombatMoveEditor : EditorWindow
         newMoveName = EditorGUILayout.TextField(newMoveName);
         if (GUILayout.Button("Add Combat Move", GUILayout.ExpandWidth(false)))
         {
-            AddCombatMove(name);
+            AddCombatMove(newMoveName);
             newMoveName = "New Move Name";
         }
 
         GUILayout.EndHorizontal();
+
+        if (GUI.changed)
+        {
+            EditorUtility.SetDirty(this.combatMoveList);
+        }
     }
 
     private void AddCombatMove(string name)
     {
-        combatMove m = combatMove.init(name, new combatEffect[] { combatEffect.lib["10dmgfirestanding"] });
+        CombatMove m = CombatMove.init(name, new string[] { "10dmgfirestanding" });
 
         this.combatMoveList.moveList.Add(m);
     }

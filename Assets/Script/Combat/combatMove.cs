@@ -1,5 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEditor;
+
+using System;
 
 /*
 
@@ -8,26 +10,33 @@ using UnityEngine;
 */
 
 [Serializable]
-public class combatMove : ScriptableObject {
+public class CombatMove : ScriptableObject {
+    
+    public string[] moveEffects;
 
-    private combatEffect[] moveEffects;
-    public string moveName;
-
-    public static combatMove init(string moveName, combatEffect[] moveEffects)
+    public static CombatMove init(string moveName, string[] moveEffects)
     {
-        combatMove m = ScriptableObject.CreateInstance <combatMove>() as combatMove;
+        CombatMove m = ScriptableObject.CreateInstance <CombatMove>() as CombatMove;
+
+        if (AssetDatabase.LoadAssetAtPath<CombatMove>("Assets/Database/CombatMove.asset") == null)
+        {
+            AssetDatabase.CreateAsset(m, "Assets/Database/CombatMove.asset");
+        }
+
+        AssetDatabase.AddObjectToAsset(m, "Assets/Database/CombatMove.asset");
+        AssetDatabase.SaveAssets();
 
         m.moveEffects = moveEffects;
-        m.moveName = moveName;
+        m.name = moveName;
 
         return m;
     }
 
     public void execute(Unit self, Unit other)
     {
-        for (int i = 0; i < this.moveEffects.Length; i++)
+        foreach (string effectName in this.moveEffects)
         {
-            moveEffects[i].execute(self, other);
+            CombatEffect.lib[effectName].execute(self, other);
         }
     }
 
