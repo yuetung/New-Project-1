@@ -4,6 +4,6 @@
 
 */
 
-public class combatAbility {
+public class CombatAbility {
 
 }

@@ -34,12 +34,6 @@ public class MoveListController : CombatUIController {
             }
         }
     }
-    
-    // API to bind to button callback
-    public void activeUnitEndTurn()
-    {
-        this.current.endTurn();
-    }
 
     public void selectMove(CombatMove m)
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 /*
 
@@ -15,58 +16,119 @@ using System.Collections.Generic;
 
 */
 
-public abstract class CombatEffect {
-    
-    // applies the relevant effect
-    public abstract void execute(Unit self, Unit other);
+[Serializable]
+public class CombatInstructionList: List<CombatInstruction> { }
 
-    public static readonly Dictionary<string, CombatEffect> lib = new Dictionary<string, CombatEffect>
-    {
-        { "10dmgfirestanding", new combatEffectDamage(1000, combatType.FIRE, combatStance.STANDING) }
-    };
+[Serializable]
+public class CombatInstruction
+{
+    // Encodes a single CombatEffect to be executed
+
+    public CombatEffect.effect effect;
+    public float potency = 0;
+    public CombatBuff buff;
+    public string stat = "";
+    public CombatType type;
+    public CombatStance stance;
 
 }
 
-public class combatEffectDamage : CombatEffect
+public class CombatEffectHandler
 {
+    // Each Move, Buff and Ability will contain a List of instructions to execute Combat Effects
+    // Each instruction encodes a mutation on a CombatEffectHandler
+    // After all instructions are executed, the CombatEffectHandler is fired to run all effects in sequence.
 
-    private combatType dmgtype;
-    private combatStance stancetype;
+    private List<CombatInstruction> instructions;
 
-    private float? amount;
-    private Func<Unit, Unit, float> var_amount;
-
-    public combatEffectDamage(float amount, combatType type, combatStance stancetype) 
-        : this(type, stancetype)
+    public CombatEffectHandler()
     {
-        this.amount = amount;
+        this.instructions = new List<CombatInstruction>();
     }
 
-    public combatEffectDamage(Func<Unit, Unit, float> expr, combatType type, combatStance stancetype) 
-        : this(type, stancetype)
+    public CombatEffectHandler(CombatInstruction[] inst)
     {
-        this.var_amount = expr;
+        this.instructions = new List<CombatInstruction>(inst);
     }
 
-    public combatEffectDamage(combatType type, combatStance stancetype)
+    public void add(IEnumerable<CombatInstruction> instructions)
     {
-        this.dmgtype = type;
-        this.stancetype = stancetype;
+        this.instructions.AddRange(instructions);
     }
 
-    override
-    public void execute(Unit self, Unit other)
+    public void execute(CombatManager battle, Unit self, Unit other, float potency)
     {
-        self.triggerEvent(combatEvent.BEFORE_DAMAGE);
-        other.triggerEvent(combatEvent.BEFORE_DAMAGED);
 
-        float damage_dealt = 0;
+        float movePotency;
 
-        if (this.amount == null) {
-            damage_dealt = this.var_amount(self, other);
-        } else {
-            damage_dealt = (float) this.amount;
+        foreach (CombatInstruction inst in this.instructions)
+        {
+
+            movePotency = potency + inst.potency;
+
+            switch (inst.effect)
+            {
+                case CombatEffect.effect.ADD_BUFF:
+                    CombatEffect.addBuff(battle, self, other, movePotency, inst.buff);
+                    break;
+                case CombatEffect.effect.REMOVE_BUFF:
+                    CombatEffect.removeBuff(battle, self, other, movePotency, inst.buff);
+                    break;
+                case CombatEffect.effect.DAMAGE:
+                    CombatEffect.damage(battle, self, other, movePotency, inst.type, inst.stance);
+                    break;
+            }
+
         }
+
+    }
+}
+
+public static class CombatEffect {
+    // Library for all effects
+
+    public enum effect {
+        DAMAGE,
+        HEAL,
+
+        REGENERATE,
+        DRAIN,
+
+        DELAY,
+        HASTEN,
+
+        ADD_BUFF,
+        REMOVE_BUFF,
+
+        ALTER_STAT
+    }
+
+    public static void addBuff(CombatManager battle, Unit self, Unit other, float potency, CombatBuff buff)
+    {
+        battle.triggerEvent(CombatEvent.BEFORE_BUFF, self);
+        battle.triggerEvent(CombatEvent.BEFORE_BUFFED, other);
+
+        CombatBuff b = UnityEngine.Object.Instantiate(buff) as CombatBuff;
+        b.potency = potency;
+
+        other.buffs.Add(b);
+
+        battle.triggerEvent(CombatEvent.AFTER_BUFF, self);
+        battle.triggerEvent(CombatEvent.AFTER_BUFFED, other);
+
+    }
+
+    public static void removeBuff(CombatManager battle, Unit self, Unit other, float potency, CombatBuff buff)
+    {
+
+    }
+
+    public static void damage(CombatManager battle, Unit self, Unit other, float potency, CombatType type, CombatStance stance)
+    {
+        battle.triggerEvent(CombatEvent.BEFORE_DAMAGE, self);
+        battle.triggerEvent(CombatEvent.BEFORE_DAMAGED, other);
+
+        float damage_dealt = potency;
 
         // modify by physical attack and defense
         damage_dealt += self.physicalAttack;
@@ -78,8 +140,8 @@ public class combatEffectDamage : CombatEffect
 
         other.health -= damage_dealt;
 
-        self.triggerEvent(combatEvent.AFTER_DAMAGE);
-        other.triggerEvent(combatEvent.AFTER_DAMAGED);
+        battle.triggerEvent(CombatEvent.AFTER_DAMAGE, self);
+        battle.triggerEvent(CombatEvent.AFTER_DAMAGED, other);
     }
 
 }

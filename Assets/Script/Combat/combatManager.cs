@@ -29,15 +29,44 @@ public class CombatManager : MonoBehaviour {
         return transform.GetComponentsInChildren<Unit>();
     }
 
+    // Combat Effects
+
+    public void execute(CombatMove move, Unit self, Unit other)
+    {
+        // Costs are paid
+        self.stamina -= move.staminaCost;
+        self.delay += move.delayCost;
+
+        // Move is generated and executed
+        CombatEffectHandler manager = new CombatEffectHandler(move.instructions);
+        manager.execute(this, self, other, move.potency);
+
+        // turn ends when unit executes a move
+        self.endTurn();
+    }
+
+    public void triggerEvent(CombatEvent e)
+    {
+
+    }
+
+    public void triggerEvent(CombatEvent e, Unit source)
+    {
+        foreach (Unit child in getAllUnits())
+        {
+            child.triggerEvent(e, source);
+        }
+    }
+
     // Combat Start and End
 
     public void combatStart()
     {
         foreach (Unit child in this.getAllUnits())
         {
-            child.triggerEvent(combatEvent.COMBAT_START);
             child.health = child.maxHealth;
             child.stamina = child.maxStamina;
+            this.triggerEvent(CombatEvent.COMBAT_START);
         }
 
         this.startNextUnitTurn();
@@ -45,11 +74,7 @@ public class CombatManager : MonoBehaviour {
 
     public void combatEnd()
     {
-        foreach (Transform child in transform)
-        {
-            child.GetComponent<Unit>().triggerEvent(combatEvent.COMBAT_END);
-        }
-
+        this.triggerEvent(CombatEvent.COMBAT_END);
     }
 
     public bool combatVictoryCondition()
@@ -81,7 +106,7 @@ public class CombatManager : MonoBehaviour {
 
                 first = this.getTurnOrder()[0];
             }
-
+            
             this.activeUnit = first;
             activeUnit.startTurn();
 

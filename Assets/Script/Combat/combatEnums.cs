@@ -1,4 +1,4 @@
-﻿public enum combatType
+﻿public enum CombatType
 {
     FIRE,
     WATER,
@@ -6,14 +6,14 @@
     NONE
 }
 
-public enum combatStance
+public enum CombatStance
 {
     STANDING,
     FLYING,
     GROUNDED
 }
 
-public enum combatEvent
+public enum CombatEvent
 {
     COMBAT_START,
     COMBAT_END,
@@ -28,5 +28,10 @@ public enum combatEvent
     BEFORE_DAMAGE,
     AFTER_DAMAGE,
     BEFORE_DAMAGED,
-    AFTER_DAMAGED
+    AFTER_DAMAGED,
+
+    BEFORE_BUFF,
+    AFTER_BUFF,
+    BEFORE_BUFFED,
+    AFTER_BUFFED
 }

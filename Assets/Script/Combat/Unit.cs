@@ -5,11 +5,11 @@ using System.Collections.Generic;
 
 public class Unit : MonoBehaviour {
     
-    public combatType primaryType;
-    public combatType secondaryType;
+    public CombatType primaryType;
+    public CombatType secondaryType;
 
     [NonSerialized]
-    public combatStance stance;
+    public CombatStance stance;
     
     public int physicalAttack;
     public int physicalDefense;
@@ -20,9 +20,12 @@ public class Unit : MonoBehaviour {
     [NonSerialized]
     public int delay;
     
-    public CombatMove[] moves;
-    public combatAbility[] abilities;
-    public combatBuff[] buffs;
+    [SerializeField]
+    public List<CombatMove> moves = new List<CombatMove>();
+    [SerializeField]
+    public List<CombatAbility> abilities = new List<CombatAbility>();
+    [SerializeField]
+    public List<CombatBuff> buffs = new List<CombatBuff>();
 
     [SerializeField]
     public float maxHealth;
@@ -30,7 +33,7 @@ public class Unit : MonoBehaviour {
     public float health {
         get { return this._health; }
         set {
-            this._health += value;
+            this._health = value;
             this._health = Mathf.Max(Mathf.Min(this.maxHealth, this._health), 0); // restricts health between max_health and 0
 
             if (this._health == 0) { 
@@ -47,7 +50,7 @@ public class Unit : MonoBehaviour {
         get { return this._stamina; }
         set
         {
-            this._stamina += value;
+            this._stamina = value;
             this._stamina = Mathf.Max(Mathf.Min(this._stamina, this.maxStamina), 0);
         }
     }
@@ -73,31 +76,42 @@ public class Unit : MonoBehaviour {
 
     public void die()
     {
-        this.triggerEvent(combatEvent.ON_DEATH);
+        battle.triggerEvent(CombatEvent.ON_DEATH, this);
         // kills this unit, to be implemented
         Debug.Log("Oh noes, you can't actually die!?");
     }
 
-    public void triggerEvent(combatEvent e)
+    public void triggerEvent(CombatEvent e, Unit source)
     {
-        // triggers combat events
-        // API for combatEffects to call
+        CombatEffectHandler handler;
+        CombatInstruction[] instructions;
+
+        foreach (CombatBuff b in this.buffs)
+        {
+            instructions = b.execute(e);
+
+            if (instructions == null) continue;
+
+            handler = new CombatEffectHandler(instructions);
+
+            handler.execute(battle, source, this, b.potency);
+        }
     }
 
     public void tick()
     {
-        this.triggerEvent(combatEvent.SPEED_TICK);
+        battle.triggerEvent(CombatEvent.SPEED_TICK, this);
         this.delay -= this.speed;
     }
 
     public void startTurn()
     {
-        this.triggerEvent(combatEvent.TURN_START);
+        battle.triggerEvent(CombatEvent.TURN_START, this);
     }
 
     public void endTurn()
     {
-        this.triggerEvent(combatEvent.TURN_END);
+        battle.triggerEvent(CombatEvent.TURN_END, this);
         battle.startNextUnitTurn();
     }
     
@@ -106,7 +120,6 @@ public class Unit : MonoBehaviour {
 [CustomEditor(typeof(Unit))]
 public class UnitEditior : Editor
 {
-    private int index = 0;
     private Unit inspected;
 
     void onEnable()
@@ -119,7 +132,10 @@ public class UnitEditior : Editor
 
     public override void OnInspectorGUI()
     {
-        CombatMove[] moveList = Array.ConvertAll<UnityEngine.Object, CombatMove>(AssetDatabase.LoadAllAssetsAtPath("Assets/Database/CombatMove.asset"), (UnityEngine.Object o) => { return o as CombatMove; });
+        CombatMove[] moveList = Array.ConvertAll<UnityEngine.Object, CombatMove>(
+            Resources.LoadAll("CombatMove"), 
+            (UnityEngine.Object o) => { return (CombatMove)o; });
+
         string[] moveNameList = Array.ConvertAll<CombatMove, string>(moveList, (CombatMove m) => { return m.name; });
 
         serializedObject.Update();
@@ -160,6 +176,7 @@ public class UnitEditior : Editor
             {
                 elem = serializedObject.FindProperty("moves").GetArrayElementAtIndex(j);
                 move = elem.objectReferenceValue as CombatMove;
+                
 
                 index = 0;
                 foreach (CombatMove moveCheck in moveList) {

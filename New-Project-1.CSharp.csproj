@@ -74,15 +74,13 @@
     <Compile Include="Assets\Script\Combat\CombatBuff.cs" />
     <Compile Include="Assets\Script\Combat\CombatEffect.cs" />
     <Compile Include="Assets\Script\Combat\CombatEnums.cs" />
-    <Compile Include="Assets\Script\Combat\CombatGrid.cs" />
     <Compile Include="Assets\Script\Combat\CombatManager.cs" />
     <Compile Include="Assets\Script\Combat\CombatMove.cs" />
-    <Compile Include="Assets\Script\Combat\CombatMoveList.cs" />
+    <Compile Include="Assets\Script\Combat\PlayerInputManager.cs" />
     <Compile Include="Assets\Script\Combat\Unit.cs" />
     <Compile Include="Assets\Script\CombatUI\CombatUIController.cs" />
     <Compile Include="Assets\Script\CombatUI\MoveButtonController.cs" />
     <Compile Include="Assets\Script\CombatUI\MoveListController.cs" />
-    <Compile Include="Assets\Script\CombatUI\PlayerInputManager.cs" />
     <Compile Include="Assets\Script\CombatUI\UnitTargetButtonController.cs" />
     <Compile Include="Assets\Script\CombatUI\UnitTargetListController.cs" />
     <Compile Include="Assets\Script\Dialogue_Box.cs" />
@@ -91,6 +89,7 @@
     <Compile Include="Assets\Script\NPC_all.cs" />
     <Compile Include="Assets\Script\Player.cs" />
     <Compile Include="Assets\Script\Setting.cs" />
+    <Compile Include="Assets\Script\Utility\Parser.cs" />
     <Compile Include="Assets\Script\dialogue.cs" />
     <Compile Include="Assets\Script\eventScript.cs" />
     <Compile Include="Assets\Script\unitInfoController.cs" />

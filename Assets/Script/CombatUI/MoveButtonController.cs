@@ -14,7 +14,7 @@ public class MoveButtonController : MonoBehaviour {
         {
             this._move = value;
 
-            moveName.text = value.name;
+            GetComponentInChildren<Text>().text = value.name;
         }
     }
 
